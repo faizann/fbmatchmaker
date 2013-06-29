@@ -19,12 +19,12 @@ start() ->
 	case inets:start() of
 		{_,_} -> ok %% don't care about inets start result
 	end,	
-	case application:start(mnesia) of
-		{error, Reason} -> error_logger:error_msg("Error in starting mnesia ~p~n",[Reason]),
-		ok; %% return OK anyway
-		ok -> ok
-	end,
-	ok = mnesia:wait_for_tables([fbusers],10000),
+%	case application:start(mnesia) of
+%		{error, Reason} -> error_logger:error_msg("Error in starting mnesia ~p~n",[Reason]),
+%		ok; %% return OK anyway
+%		ok -> ok
+%	end,
+%	ok = mnesia:wait_for_tables([fbusers],10000),
 	case apns:start() of 
 		{ok} -> ok;
 		{error,{already_started,_}} -> ok;
@@ -33,18 +33,18 @@ start() ->
 	end,
 	{ok, _Pid} = apns:connect(?TEST_CONNECTION, fun apns_log_error/2, fun apns_log_feedback/1).
 
-install() ->
-	install([node()]).
+%install() ->
+%	install([node()]).
 
-install(Nodes) ->
-	ok = mnesia:create_schema(Nodes),
-	application:start(mnesia),
-	mnesia:create_table(fbusers, 
-			[{attributes, record_info(fields,fbusers)},
-			{index, [#fbusers.pnstoken]},
-			{disc_copies,Nodes},
-			{type, set}]),
-	application:stop(mnesia).
+%install(Nodes) ->
+%	ok = mnesia:create_schema(Nodes),
+%	application:start(mnesia),
+%	mnesia:create_table(fbusers, 
+%			[{attributes, record_info(fields,fbusers)},
+%			{index, [#fbusers.pnstoken]},
+%			{disc_copies,Nodes},
+%			{type, set}]),
+%	application:stop(mnesia).
 
 register_user(Redis,Fbid,Pnstoken, Gameversion, Os) ->
 	case eredis:q(Redis,["HMSET",Fbid,"pnstoken",Pnstoken,"gameversion",Gameversion,"osid",Os]) of

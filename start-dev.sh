@@ -6,4 +6,5 @@ exec erl -pa ebin edit deps/*/ebin -boot start_sasl \
     -s apns \
     -s fbmatchmaker \
     -s reloader \
+#    -detached \
     -config sys.config
