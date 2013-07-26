@@ -1,8 +1,0 @@
-run_erl [21400] Mon Jul 22 09:30:35 2013
-Args before exec of shell:
-run_erl [21400] Mon Jul 22 09:30:35 2013
-argv[0] = sh
-run_erl [21400] Mon Jul 22 09:30:35 2013
-argv[1] = -c
-run_erl [21400] Mon Jul 22 09:30:35 2013
-argv[2] = exec /home/faizan/nerdiacs/fbmatchmaker/rel/fbmatchmaker/bin/fbmatchmaker console
