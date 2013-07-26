@@ -24,7 +24,7 @@ start() ->
 		ok; %% return OK anyway
 		ok -> ok
 	end,
-	ok = mnesia:wait_for_tables([fbusers],10000),
+%	ok = mnesia:wait_for_tables([fbusers],10000),
 	case apns:start() of 
 		{ok} -> ok;
 		{error,{already_started,_}} -> ok;

@@ -8,3 +8,7 @@
 /deps
 *.swp
 *.beam
+*.dump
+*.out
+/priv
+/rel

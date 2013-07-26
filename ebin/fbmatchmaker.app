@@ -1,0 +1,11 @@
+{application,fbmatchmaker,
+             [{description,"fbmatchmaker"},
+              {vsn,"0.1"},
+              {modules,[fbmatchmaker,fbmatchmaker_api,fbmatchmaker_api_tests,
+                        fbmatchmaker_app,fbmatchmaker_deps,fbmatchmaker_dtl,
+                        fbmatchmaker_shortcuts,fbmatchmaker_sup,
+                        fbmatchmaker_view,fbmatchmaker_web]},
+              {registered,[]},
+              {mod,{fbmatchmaker_app,[]}},
+              {env,[]},
+              {applications,[kernel,stdlib,crypto,apns]}]}.
