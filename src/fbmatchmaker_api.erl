@@ -16,14 +16,16 @@
                     image   = none  :: none | string()}).       
 
 start() ->
+	error_logger:info_msg("Starting fbmatchmaker_api~n"),
 	case inets:start() of
-		{_,_} -> ok %% don't care about inets start result
-	end,	
-	case application:start(mnesia) of
-		{error, Reason} -> error_logger:error_msg("Error in starting mnesia ~p~n",[Reason]),
-		ok; %% return OK anyway
+		{_,_} -> ok; %% don't care about inets start result
 		ok -> ok
-	end,
+	end,	
+%	case application:start(mnesia) of
+%		{error, Reason} -> error_logger:error_msg("Error in starting mnesia ~p~n",[Reason]),
+%		ok; %% return OK anyway
+%		ok -> ok
+%	end,
 %	ok = mnesia:wait_for_tables([fbusers],10000),
 	case apns:start() of 
 		{ok} -> ok;

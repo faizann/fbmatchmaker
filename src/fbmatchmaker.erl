@@ -19,6 +19,7 @@ ensure_started(App) ->
 %% @spec start() -> ok
 %% @doc Start the fbmatchmaker server.
 start() ->
+    error_logger:info_msg("Starting fbmatchmaker ~n"),
     fbmatchmaker_deps:ensure(),
     ensure_started(crypto),
     ensure_started(inets),
