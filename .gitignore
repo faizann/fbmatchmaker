@@ -9,3 +9,5 @@
 *.swp
 *.beam
 *.dump
+sys.config
+start-dev.sh
