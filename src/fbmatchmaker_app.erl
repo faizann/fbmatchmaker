@@ -13,7 +13,9 @@
 %% @spec start(_Type, _StartArgs) -> ServerRet
 %% @doc application start callback for fbmatchmaker.
 start(_Type, _StartArgs) ->
+	error_logger:info_msg("Starting fbmatchmaker_app~n"),
     fbmatchmaker_deps:ensure(),
+    fbmatchmaker_api:start(),
     fbmatchmaker_sup:start_link().
 
 %% @spec stop(_State) -> ServerRet

@@ -16,8 +16,14 @@
                     image   = none  :: none | string()}).       
 
 start() ->
+	error_logger:info_msg("Starting fbmatchmaker_api~n"),
 	case inets:start() of
+<<<<<<< HEAD
 		{_,_} -> ok %% don't care about inets start result
+=======
+		{_,_} -> ok; %% don't care about inets start result
+		ok -> ok
+>>>>>>> 695c74e0421631d4e7a6a60d2bbbfdcc9ea2b810
 	end,	
 %	case application:start(mnesia) of
 %		{error, Reason} -> error_logger:error_msg("Error in starting mnesia ~p~n",[Reason]),
