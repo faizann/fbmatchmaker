@@ -5,5 +5,6 @@
   {modules, []},
   {registered, []},
   {mod, {'fbmatchmaker_app', []}},
+  {mod, {statsd_app, ["localhost", 8125]}},
   {env, []},
   {applications, [kernel, stdlib, crypto, apns]}]}.
