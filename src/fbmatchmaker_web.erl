@@ -59,6 +59,11 @@ loop(Req, DocRoot, Redis) ->
 %%            _ ->
 %%                Req:respond({501, [], []})
 %%        end
+
+%% log request to our logger
+
+		log4erl:info(mochiweb,"~p ~p ~p",[Req:get(peer), Req:get(method), Req:get(path)]),
+		log4erl:debug(mochiweb,"~p",[Req:dump()]),
 		case dispatch(Req,fbmatchmaker_view:urls(),Redis) of
 			none ->
 				% No request handler found
@@ -79,6 +84,7 @@ loop(Req, DocRoot, Redis) ->
                       {type, Type}, {what, What},
                       {trace, erlang:get_stacktrace()}],
             error_logger:error_report(Report),
+	    log4erl:error(Report),
             %% NOTE: mustache templates need \ because they are not awesome.
             Req:respond({500, [{"Content-Type", "text/plain"}],
                          "request failed, sorry\n"})

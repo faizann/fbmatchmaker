@@ -41,7 +41,7 @@ upgrade() ->
 %% @spec init([]) -> SupervisorTree
 %% @doc supervisor callback.
 init([]) ->
-    Web = web_specs(fbmatchmaker_web, 8080),
+    Web = web_specs(fbmatchmaker_web, 8081),
     Processes = [Web],
     Strategy = {one_for_one, 10, 10},
     {ok,
