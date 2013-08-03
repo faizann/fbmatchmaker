@@ -27,8 +27,9 @@ register_fbuser('GET',Req, Redis) ->
 	Pnstoken = proplists:get_value("pnstoken",QueryStringData,"0"),
 	Gameversion = proplists:get_value("gameversion",QueryStringData,"unknown"),
 	OS = proplists:get_value("os",QueryStringData,"unknown"),
-	L = {struct, [{fbid, Fbuser}, {pnstoken, Pnstoken}, {gameversion, Gameversion}, {os,OS}]},
-	case fbmatchmaker_api:register_user(Redis, Fbuser, Pnstoken, Gameversion,OS) of
+	Fbemail = proplists:get_value("email",QueryStringData,"unknown"),
+%	L = {struct, [{fbid, Fbuser}, {pnstoken, Pnstoken}, {gameversion, Gameversion}, {os,OS}]},
+	case fbmatchmaker_api:register_user(Redis, Fbuser, Pnstoken, Gameversion,OS,Fbemail) of
 		success -> 
 			L1 = {struct ,[{result, success}]};
 		_ ->

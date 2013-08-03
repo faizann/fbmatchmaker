@@ -9,11 +9,11 @@
 %-on_load(init/0).
 -record(fbusers, {fbid, pnstoken, gameversion, osid}). %% A simple record/table to store our fbusers list
 -record(api_config, {gcmApiKey = "AIzaSyDjRpsMLtWJHmM-Z3SmEHVXAQqMj_W2kA8"}).
--record(apns_msg, {body    = none  :: none | string(),
-                    action  = none  :: none | string(),
-                    key     = ""    :: string(),
-                    args    = []    :: [string()],
-                    image   = none  :: none | string()}).       
+%-record(apns_msg, {body    = none  :: none | string(),
+%                    action  = none  :: none | string(),
+%                    key     = ""    :: string(),
+%                    args    = []    :: [string()],
+%                    image   = none  :: none | string()}).       
 
 start() ->
 	error_logger:info_msg("Starting fbmatchmaker_api~n"),
@@ -48,8 +48,8 @@ install(Nodes) ->
 			{type, set}]),
 	application:stop(mnesia).
 
-register_user(Redis,Fbid,Pnstoken, Gameversion, Os) ->
-	case eredis:q(Redis,["HMSET",Fbid,"pnstoken",Pnstoken,"gameversion",Gameversion,"osid",Os]) of
+register_user(Redis,Fbid,Pnstoken, Gameversion, Os,Fbemail) ->
+	case eredis:q(Redis,["HMSET",Fbid,"pnstoken",Pnstoken,"gameversion",Gameversion,"osid",Os,"email",Fbemail]) of
 		{ok,_} -> success;
 		{error,Error} -> io:fwrite("Error in redis insert ~p~n", [Error]), failed;
 		_ -> failed
@@ -88,7 +88,7 @@ get_user(Redis,Fbid) ->
 
 invite_user(Redis, Fbid,_Hostfbid, _Hostfbname, Message, Gametype) ->
 	case get_user(Redis,Fbid) of
-		{error,Err} -> {error, {not_found, Fbid}};
+		{error,_Err} -> {error, {not_found, Fbid}};
 		{ok,Peer1} -> 
 			Apiconfig = #api_config{},
 			io:format("ApiKey ~p fbid ~p\n",[Apiconfig#api_config.gcmApiKey,Peer1#fbusers.fbid]),
