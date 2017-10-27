@@ -9,7 +9,7 @@ mnesia_test() ->
 fbinsert_test(Numrecs) ->
 	L = [X || X <- [lists:seq(1,Numrecs)]],
 	Fblist = lists:map(fun(X) -> string:concat("facebookuser",integer_to_list(X)) end, L),
-	Pnstoken = "APA91bENqXZjNMuswK0q__bT2m5DCuQWLtfk8w5opQ5E-SkIvksCRIV3zYBkedascAq8nEFyluWmoSPy6ofgSHXQcL-oWi7eCj5bD6SVGjSkj5G8QFS8aXWpF6l64akmeRKq3vknfpQ8K4PvOa3_1Xsir9574O9GAA",
+	Pnstoken = "YOUR_APNS_TOKEN",
 	Gameversion = "mnesiatest",
 	Osid = "android",
 	eunit:debugFmt("Inserting ~p records for testing"),
