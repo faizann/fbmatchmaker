@@ -8,7 +8,7 @@
 
 %-on_load(init/0).
 -record(fbusers, {fbid, pnstoken, gameversion, osid}). %% A simple record/table to store our fbusers list
--record(api_config, {gcmApiKey = "AIzaSyDjRpsMLtWJHmM-Z3SmEHVXAQqMj_W2kA8"}).
+-record(api_config, {gcmApiKey = "YOURKEYHERE"}).
 %-record(apns_msg, {body    = none  :: none | string(),
 %                    action  = none  :: none | string(),
 %                    key     = ""    :: string(),
